@@ -4,7 +4,7 @@ import urllib2,urllib
 import MySQLdb
 
 def get_cursor():
-    conn = MySQLdb.connect(host = '50.16.213.18', user = 'root', passwd = 'AwsOmPass123', db = 'eteamz')
+    conn = MySQLdb.connect(host = '50.16.213.18', user = 'eteamz_temp', passwd = 'eteamz_temp_password', db = 'eteamz')
     cursor = conn.cursor()
     return {'cursor': cursor, 'conn' : conn}
 
