@@ -47,7 +47,7 @@ def mark_stop(page_num, state, gender):
     return cur.rowcount
 
 def main():
-    states = [''] #already did Washington
+    states = ['Alabama, Alaska, Alberta, Arizona, Arkansas, British Columbia, California, Colorado, Connecticut, Delaware, District of Columbia, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, International, Iowa, Kansas, Kentucky, Louisiana, Maine, Manitoba, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Brunswick, New Hampshire, New Jersey, New Mexico, New York, Newfoundland, North Carolina, North Dakota, Northwest Territories, Nova Scotia, Ohio, Oklahoma, Ontario, Oregon, Pennsylvania, Prince Edward Island, Puerto Rico, Quebec, Rhode Island, Saskatchewan, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia,  West Virginia, Wisconsin, Wyoming, Yukon'] #already did Washington
     genders = ['Female','Male','Coed']
     for state in states:
         #make sure it is done for every state
