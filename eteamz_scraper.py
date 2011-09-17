@@ -31,7 +31,7 @@ def make_url(page, search_box = "", city = "", state = "", sport = "", skill = "
     return base_url + "?" + params_url
         
 def insert_links(links, state, gender, age, sport = "", skill = "", organization = ""):
-    insert_str = ", ".join(["('%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (link, state, gender, age, sport, skill, organization) for link in links])
+    insert_str = ", ".join(["(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (link, state, gender, age, sport, skill, organization) for link in links])
     query_str = "INSERT INTO teams_all (url, state, gender, age, sport, skill, organization) VALUES %s" % (insert_str)
     mysql = get_cursor()
     cur = mysql['cursor']
@@ -42,7 +42,7 @@ def insert_links(links, state, gender, age, sport = "", skill = "", organization
 def mark_stop(page_num, state, gender, age, sport = "", skill = "", organization = ""):
     mysql = get_cursor()
     cur = mysql['cursor']
-    cur.execute("INSERT INTO stops_all (page_number, state, gender, age, sport, skill, organization) VALUES (%s, '%s', '%s', '%s', '%s', '%s', '%s')" % (str(page_num), state, gender, age, sport, skill, organization))
+    cur.execute("INSERT INTO stops_all (page_number, state, gender, age, sport, skill, organization) VALUES (%s, \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (str(page_num), state, gender, age, sport, skill, organization))
     mysql['conn'].commit()
     return cur.rowcount
 
