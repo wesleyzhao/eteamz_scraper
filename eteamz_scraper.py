@@ -11,7 +11,7 @@ skills = ['Church', 'Club', 'College', 'Competitive', 'Corporate', 'Elementary',
 organizations = ['AA Youth Basketball', 'American Amateur Baseball Congress', 'American Association of Cheerleading Coaches and Advisors', 'Amateur Athletic Union Boys Basketball', 'Amateur Athletic Union Girls Basketball', 'Amateur Athletic Union Jr. Golf', 'American Amateur Youth Baseball Alliance', 'All American Youth Football & Cheer', 'AFA Flag Football', 'AFA Semi-Pro', 'American Legion Baseball', 'American Running Association', 'American Roundball Corporation', 'Amateur Softball Association', 'American Youth Soccer Organization', 'Babe Ruth League Baseball', 'Basketball Congress International', 'British Youth American Football Association', 'Continental Amateur Baseball Association', 'Cal Ripken League', 'Connie Mack World Series', 'Central Texas Fastbreak Basketball', 'Dixie Youth Baseball', 'Dixie Softball', 'Dizzy Dean Baseball', 'Babe Ruth League Softball', 'Georgia Youth Football Conference', 'Indian Nations Youth Football', 'International Senior Softball Association', 'Little League Baseball and Softball', 'Mickey Mantle Baseball', 'Mid-American Youth Basketball', 'Mens Senior/Adult Baseball League', 'National Adult Baseball Association', 'National Amateur Baseball Federation', 'National Baseball Congress', 'National Field Hockey Coaches Association', 'National Softball Association', 'Pony Baseball', 'Pony', 'Pop Warner Little Scholars', 'Sandy Koufax Baseball', 'Soccer Association for Youth', 'Slow Pitch Softball Team', 'T-Ball USA', 'USA Hockey Inc.', 'USA Volleyball', 'USA Water Polo', 'United States Baseball Congress', 'USSSA Baseball', 'USSSA Fast Pitch Softball', 'USSSA Slow Pitch Softball', 'US Youth Soccer Association', 'Youth Football', 'Independent Softball Association - Canada', 'Senior Softball Canada', 'USA Track & Field ', 'Boy Scouts of America', 'Girl Scouts', 'World Organization of the Scout Movement', 'Scouts Canada']
 
 def get_cursor():
-    conn = MySQLdb.connect(host = '50.16.213.18', user = 'root', passwd = 'AwsOmPass123', db = 'eteamz')
+    conn = MySQLdb.connect(host = 'host', user = 'user', passwd = 'pass', db = 'db')
     cursor = conn.cursor()
     return {'cursor': cursor, 'conn' : conn}
 
@@ -38,13 +38,8 @@ def make_url(page, search_box = "", city = "", state = "", sport = "", skill = "
     return base_url + "?" + params_url
         
 def insert_links(links, state, gender, age, sport = "", skill = "", organization = ""):
-<<<<<<< HEAD
-    insert_str = ", ".join(["(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (link, state, gender, age, sport, skill, organization) for link in links])
-    query_str = "INSERT INTO teams_all (url, state, gender, age, sport, skill, organization) VALUES %s" % (insert_str)
-=======
-    insert_str = ", ".join(["('%s', '%s', '%s', '%s', '%s')" % (link, state, gender, age, sport) for link in links])
-    query_str = "INSERT INTO teams_sports (url, state, gender, age, sport) VALUES %s" % (insert_str)
->>>>>>> 4f6c080734d1e374327b2f5ec56a164194757464
+    insert_str = ", ".join(["(\"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (link, state, gender, age, sport) for link in links])
+    query_str = "INSERT INTO teams_all (url, state, gender, age, sport VALUES %s" % (insert_str)
     mysql = get_cursor()
     cur = mysql['cursor']
     cur.execute(query_str)
@@ -54,11 +49,7 @@ def insert_links(links, state, gender, age, sport = "", skill = "", organization
 def mark_stop(page_num, state, gender, age, sport = "", skill = "", organization = ""):
     mysql = get_cursor()
     cur = mysql['cursor']
-<<<<<<< HEAD
-    cur.execute("INSERT INTO stops_all (page_number, state, gender, age, sport, skill, organization) VALUES (%s, \"%s\", \"%s\", \"%s\", \"%s\", \"%s\", \"%s\")" % (str(page_num), state, gender, age, sport, skill, organization))
-=======
-    cur.execute("INSERT INTO stops_sports (page_number, state, gender, age, sport) VALUES (%s, '%s', '%s', '%s', '%s')" % (str(page_num), state, gender, age, sport))
->>>>>>> 4f6c080734d1e374327b2f5ec56a164194757464
+    cur.execute("INSERT INTO stops_all (page_number, state, gender, age, sport) VALUES (%s, \"%s\", \"%s\", \"%s\", \"%s\")" % (str(page_num), state, gender, age, sport))
     mysql['conn'].commit()
     #return cur.rowcount
 
